@@ -1,6 +1,6 @@
 {
   "name": "@piavart/nestjs-dynamodb",
-  "version": "0.0.1-test1",
+  "version": "0.0.1-draft",
   "description": "nestjs dynamodb module",
   "main": "dist/index.js",
   "scripts": {
