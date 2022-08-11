@@ -1,0 +1,91 @@
+{
+  "name": "@piavart/nestjs-dynamodb",
+  "version": "0.0.1-test1",
+  "description": "nestjs dynamodb module",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest --detectOpenHandles --forceExit",
+    "lint": "eslint \"src/**/*.ts\" --max-warnings 0",
+    "format": "prettier \"src/**/*.ts\" --write",
+    "build": "rm -rf dist && tsc -p tsconfig.json",
+    "precommit": "lint-staged",
+    "prepublish:npm": "npm run build",
+    "publish:npm": "npm publish --access public",
+    "prepublish:next": "npm run build",
+    "publish:next": "npm publish --access public --tag next",
+    "prerelease": "npm run build",
+    "release": "release-it"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piavart/nestjs-dynamodb.git"
+  },
+  "keywords": [
+    "nestjs",
+    "dynamodb"
+  ],
+  "author": "Arseny Vorobyov <piavarts@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/piavart/nestjs-dynamodb/issues"
+  },
+  "homepage": "https://github.com/piavart/nestjs-dynamodb#readme",
+  "dependencies": {
+    "@aws/dynamodb-data-mapper": "^0.7.3",
+    "@aws/dynamodb-data-mapper-annotations": "^0.7.3",
+    "is-class": "^0.0.9",
+    "lodash": "^4.17.21",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^8.0.0",
+    "@nestjs/core": "^8.0.0",
+    "@nestjs/testing": "^8.4.7",
+    "@types/jest": "^28.1.6",
+    "@types/lodash": "^4.14.182",
+    "@types/node": "^18.6.5",
+    "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "assert": "^2.0.0",
+    "aws-sdk": "^2.1191.0",
+    "eslint": "^8.21.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jest": "^28.1.3",
+    "jest-dynalite": "^3.6.1",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.7.1",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.5.6",
+    "ts-jest": "^28.0.7",
+    "typescript": "^4.7.4"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0",
+    "@nestjs/core": "^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0",
+    "reflect-metadata": "^0.1.12",
+    "rxjs": "^6.0.0 || ^7.0.0"
+  },
+  "pre-commit": [
+    "test"
+  ],
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}
