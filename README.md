@@ -153,10 +153,6 @@ import { UserModel, UserEntity, UserDocument, UserPrimaryKey } from './user.enti
 export class UsersService {
   constructor(@InjectModel(UserEntity) private readonly userModel: UserModel) {}
 
-  async all(input: Partial<UserInput>): Promise<UserDocument[]> {
-    return this.userModel.query(input);
-  }
-
   async find(pk: UserPrimaryKey): Promise<UserDocument> {
     return this.userModel.findByPrimaryKey(pk);
   }
