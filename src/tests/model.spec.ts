@@ -36,6 +36,14 @@ describe('DynamoDbModel', () => {
     });
   });
 
+  describe('Method: scan', () => {
+    it('scan must be return a documents', async () => {
+      const documents = await service.sbsModel.scan();
+      assert(Array.isArray(documents));
+      assert(documents[0] instanceof Document);
+    });
+  });
+
   describe('Method: createItem', () => {
     it('success create item', async () => {
       const cat = service.catsModel.createItem({ withDefaultId: true });

@@ -5,6 +5,8 @@ import {
   QueryOptions,
   DeleteOptions,
   ItemNotFoundException,
+  ScanOptions,
+  ParallelScanWorkerOptions,
 } from '@aws/dynamodb-data-mapper';
 import { unmarshallItem } from '@aws/dynamodb-data-marshaller';
 import { createId } from '../util';
@@ -34,6 +36,16 @@ export class Model<
   ) {
     super(dynamoDBClient, mapper, dynamoDBClass);
     mapper.ensureTableExists(this.dynamoDBClass, this.tableOptions);
+  }
+
+  public async scan(options?: ScanOptions | ParallelScanWorkerOptions) {
+    const results: TDynamoDbDocument<T>[] = [];
+
+    for await (const item of this.mapper.scan(this.dynamoDBClass, options)) {
+      results.push(this.createDocument(item as never as T));
+    }
+
+    return results;
   }
 
   public async query(
